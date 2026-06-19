@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream font-body text-bark antialiased;
+    overflow-x: hidden;
+  }
+  #oferta {
+    scroll-margin-top: 64px;
+  }
+}
+
+@layer components {
+  .pulsing-btn {
+    animation: pulseRing 2.2s infinite;
+  }
+  .softbounce {
+    animation: softbounce 2.6s ease-in-out infinite;
+  }
+  /* CTA dourado (ação principal) */
+  .btn-gold {
+    @apply mx-auto flex w-full max-w-md items-center justify-center gap-2 rounded-full
+      border-2 border-gold-soft bg-gradient-to-r from-gold to-gold-deep px-4 py-4
+      text-sm font-black uppercase tracking-wide text-wine shadow-xl
+      transition-transform active:scale-95 md:gap-3 md:px-8 md:text-lg;
+  }
+  /* CTA azul (secundário) */
+  .btn-blue {
+    @apply mx-auto flex w-full max-w-md items-center justify-center gap-2 rounded-full
+      border-2 border-sky bg-gradient-to-r from-sapphire to-sky-deep px-4 py-4
+      text-sm font-extrabold uppercase tracking-wide text-white shadow-xl
+      transition-transform active:scale-95 md:gap-3 md:px-8 md:text-lg;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.vis {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .pulsing-btn, .softbounce { animation: none !important; }
+}
