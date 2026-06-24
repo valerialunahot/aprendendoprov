@@ -6,7 +6,8 @@ import VslPlayer from './components/VslPlayer'
 import DownsellPopup from './components/DownsellPopup'
 import {
   CHECKOUT, PRICES, IMG, HEADLINE, FEATURES, KIT_ITEMS, BONUS,
-  BASICO_ITEMS, BASICO_EXCLUSOES, PREMIUM_ITEMS, FAQ as FAQ_DATA,
+  ANCORAGEM, ANCORAGEM_TOTAL, PASSOS, BASICO_ITEMS, BASICO_EXCLUSOES,
+  PREMIUM_ITEMS, FAQ as FAQ_DATA,
 } from './data/content'
 
 function Reveal({ as: Tag = 'section', className = '', children }) {
@@ -14,8 +15,8 @@ function Reveal({ as: Tag = 'section', className = '', children }) {
   return <Tag ref={ref} className={`reveal ${vis ? 'vis' : ''} ${className}`}>{children}</Tag>
 }
 
-function GoldBtn({ children, onClick }) {
-  return <button onClick={onClick || scrollToOferta} className="btn-gold pulsing-btn">{children}</button>
+function GoldBtn({ children, onClick, className = '' }) {
+  return <button onClick={onClick || scrollToOferta} className={`btn-gold pulsing-btn ${className}`}>{children}</button>
 }
 
 /* ---------- BARRA DE URGÊNCIA ---------- */
@@ -39,31 +40,37 @@ function Hero() {
     <header className="relative overflow-hidden bg-gradient-to-b from-sky-soft to-cream px-4 pt-10 pb-10 md:py-20">
       <div aria-hidden className="pointer-events-none absolute -left-16 top-10 h-56 w-56 rounded-full bg-meadow/40 mix-blend-multiply blur-3xl opacity-60" />
       <div aria-hidden className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-gold-soft/40 mix-blend-multiply blur-3xl opacity-60" />
-      <div aria-hidden className="pointer-events-none absolute bottom-0 left-1/3 h-56 w-56 rounded-full bg-sky/50 mix-blend-multiply blur-3xl opacity-50" />
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <span className="inline-flex items-center gap-2 rounded-full bg-gold-soft px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-widest text-wine shadow-sm md:text-xs">
-          🔥 Mais de 100 compras nas últimas 24 horas
-        </span>
-        <h1 className="mt-4 font-display text-[24px] font-extrabold uppercase leading-tight tracking-tight text-wine drop-shadow-sm sm:text-3xl md:text-4xl lg:text-[44px]">
-          {HEADLINE.pre}<span className="text-sapphire">{HEADLINE.hl1}</span>{HEADLINE.mid}<span className="text-gold-deep">{HEADLINE.hl2}</span>{HEADLINE.pos}
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl rounded-2xl border-2 border-sky bg-white/80 p-4 text-sm font-bold leading-relaxed text-bark shadow-md backdrop-blur-sm md:p-5 md:text-lg">
-          Um devocional com uma historinha por dia, versículos de Provérbios e uma atividade pra criança fazer sozinha. Você baixa, imprime na sua casa e começa hoje mesmo, pra ensinar seu filho ou pra imprimir e vender pra outras mães.
-        </p>
-        <div className="mx-auto mt-8 max-w-[300px] -rotate-1 overflow-hidden rounded-3xl border-4 border-white bg-white shadow-2xl transition-transform duration-500 hover:rotate-0 sm:max-w-sm md:border-8">
-          <img src={IMG.hero} alt="Devocional Aprendendo com Provérbios" fetchpriority="high" decoding="async" className="w-full object-contain" />
-        </div>
-        <div className="mt-8"><GoldBtn>👉 Quero começar os 31 dias com meu filho</GoldBtn></div>
-        <div className="mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-meadow/40 bg-meadow-soft px-4 py-3 text-xs font-bold text-meadow-deep shadow-sm md:text-sm">
-          <span>🛡</span> Acesso imediato ao material logo após a compra
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-10">
+          <div className="order-2 text-center md:order-1 md:text-left">
+            <span className="inline-flex items-center gap-2 rounded-full bg-gold-soft px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-widest text-wine shadow-sm md:text-xs">🔥 Mais de 100 compras nas últimas 24 horas</span>
+            <h1 className="mt-4 text-wine drop-shadow-sm">
+              <span className="block font-script text-4xl font-bold leading-none text-gold-deep sm:text-5xl md:text-6xl">{HEADLINE.script}</span>
+              <span className="mt-2 block font-display text-lg font-bold leading-snug sm:text-2xl md:text-[26px] lg:text-[30px]">
+                {HEADLINE.pre}<span className="italic text-sapphire">{HEADLINE.italic}</span>{HEADLINE.pos}
+              </span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-sm font-semibold leading-relaxed text-bark/80 md:mx-0 md:text-base">
+              Cada uma das 31 dinâmicas tem uma historinha com a turminha, um versículo de Provérbios e uma atividade pro seu filho fazer. Você baixa, imprime na sua casa e recebe tudo no seu e-mail e WhatsApp.
+            </p>
+            <div className="mt-7"><GoldBtn className="md:mx-0">👉 Quero começar as 31 dinâmicas com meu filho</GoldBtn></div>
+            <div className="mt-5 inline-flex items-center justify-center gap-2 rounded-xl border border-meadow/40 bg-meadow-soft px-4 py-3 text-xs font-bold text-meadow-deep shadow-sm md:text-sm">
+              <span>🛡</span> Acesso imediato. Você recebe no e-mail e no WhatsApp logo após a compra
+            </div>
+          </div>
+          <div className="order-1 md:order-2">
+            <div className="mx-auto max-w-[340px] overflow-hidden rounded-3xl border-4 border-white bg-white shadow-2xl md:border-8">
+              <img src={IMG.hero} alt="Mãe e filho com o devocional Aprendendo com Provérbios personalizado" fetchpriority="high" decoding="async" className="w-full object-cover" />
+            </div>
+          </div>
         </div>
       </div>
     </header>
   )
 }
 
-/* ---------- DEPOIMENTOS (vídeo + prints) ---------- */
-function Depoimentos({ onOpenDownsell }) {
+/* ---------- DEPOIMENTOS ---------- */
+function Depoimentos() {
   return (
     <Reveal className="relative overflow-hidden border-y-4 border-white bg-sky-soft px-4 pt-10 pb-12 md:py-20">
       <div aria-hidden className="pointer-events-none absolute right-0 top-0 h-56 w-56 rounded-full bg-meadow/30 mix-blend-multiply blur-3xl opacity-50" />
@@ -72,12 +79,10 @@ function Depoimentos({ onOpenDownsell }) {
           <span className="inline-flex items-center gap-2 rounded-full border border-meadow/30 bg-white px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-widest text-meadow-deep md:text-xs">💬 Depoimentos reais de mães</span>
           <h2 className="mt-4 font-display text-xl font-extrabold uppercase leading-snug tracking-wide text-wine drop-shadow-sm md:text-3xl lg:text-4xl">Mães que já imprimiram em casa 💛</h2>
         </div>
-
         <div className="mx-auto max-w-md text-center">
           <p className="mx-auto max-w-xl font-script text-2xl leading-snug text-sapphire md:text-3xl">Prepara o coração 🥹 veja o que a Lucia falou depois de imprimir tudo em casa.</p>
           <VslPlayer onCtaClick={scrollToOferta} />
         </div>
-
         <p className="mt-10 text-center text-sm font-semibold text-bark/70 md:text-base">E não para por aí. Olha o que outras mães mandaram depois de baixar e montar 👇</p>
         <div className="no-scrollbar mt-5 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto px-2 pb-4 md:gap-6 md:px-4">
           {IMG.feedbacks.map((src, i) => (
@@ -86,7 +91,6 @@ function Depoimentos({ onOpenDownsell }) {
             </div>
           ))}
         </div>
-
         <div className="mt-8 text-center">
           <button onClick={scrollToOferta} className="btn-blue pulsing-btn">Quero esse momento com meu filho também ⬇️</button>
         </div>
@@ -102,7 +106,7 @@ function Demonstracao() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 text-center md:mb-12">
           <span className="font-script text-2xl text-sapphire md:text-3xl">Veja por dentro 📖</span>
-          <h2 className="mx-auto mt-1 max-w-3xl font-display text-xl font-extrabold uppercase leading-snug tracking-wide text-wine md:text-3xl">Cada página prende a atenção e ensina um valor de verdade</h2>
+          <h2 className="mx-auto mt-1 max-w-3xl font-display text-xl font-extrabold uppercase leading-snug tracking-wide text-wine md:text-3xl">Cada dinâmica prende a atenção e ensina um valor de verdade</h2>
         </div>
         <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-2 pb-4 md:justify-center md:gap-6 md:px-4">
           {IMG.galeria.map((it) => (
@@ -115,6 +119,27 @@ function Demonstracao() {
           ))}
         </div>
         <div className="mt-9 text-center"><GoldBtn>Quero esse devocional em casa</GoldBtn></div>
+      </div>
+    </Reveal>
+  )
+}
+
+/* ---------- PERSONALIZAÇÃO ---------- */
+function Personalizacao() {
+  return (
+    <Reveal className="bg-gradient-to-b from-blush/10 to-cream px-4 py-12 md:py-20">
+      <div className="mx-auto max-w-5xl">
+        <div className="grid items-center gap-8 md:grid-cols-2">
+          <div className="mx-auto max-w-[320px] overflow-hidden rounded-3xl border-4 border-white shadow-xl md:border-8">
+            <img src={IMG.personalizacao} loading="lazy" decoding="async" className="w-full object-cover" alt="Devocional com o nome da criança na capa" />
+          </div>
+          <div className="text-center md:text-left">
+            <span className="font-script text-2xl text-blush md:text-3xl">Um detalhe que emociona 💛</span>
+            <h2 className="mt-1 font-display text-xl font-extrabold uppercase leading-snug tracking-wide text-wine md:text-3xl">A capa vai com o nome do seu filho</h2>
+            <p className="mt-3 text-sm leading-relaxed text-bark/80 md:text-base">Você coloca o nome da criança na capa e o devocional vira um presente exclusivo, só dele. É aquele tipo de lembrança que a criança guarda a vida toda e que a mãe se emociona de receber. E pra quem vende, é o detalhe que faz a mãe pagar mais caro e ainda agradecer.</p>
+            <div className="mt-6"><GoldBtn className="md:mx-0">Quero com o nome do meu filho</GoldBtn></div>
+          </div>
+        </div>
       </div>
     </Reveal>
   )
@@ -136,6 +161,23 @@ function Features() {
           ))}
         </div>
         <div className="mt-10 text-center"><GoldBtn>Quero garantir o meu agora</GoldBtn></div>
+      </div>
+    </Reveal>
+  )
+}
+
+/* ---------- QUEM É A LINA ---------- */
+function QuemELina() {
+  return (
+    <Reveal className="bg-cream px-4 py-12 md:py-20">
+      <div className="mx-auto max-w-3xl">
+        <div className="flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
+          <img src={IMG.lina} loading="lazy" decoding="async" className="h-36 w-36 shrink-0 rounded-full border-4 border-blush object-cover shadow-lg md:h-40 md:w-40" alt="Lina" />
+          <div>
+            <h2 className="font-display text-2xl font-extrabold text-wine md:text-3xl">Oi, eu sou a Lina 💛</h2>
+            <p className="mt-3 text-sm leading-relaxed text-bark/80 md:text-base">Sou mãe, apaixonada por Jesus e por papelaria. Crio cada arquivo no meu ateliê, a casinha rosa, pensando em facilitar a vida de quem quer ensinar os filhos com carinho e de quem quer fazer uma renda com algo cheio de propósito. Esse devocional eu fiz com o coração.</p>
+          </div>
+        </div>
       </div>
     </Reveal>
   )
@@ -210,7 +252,7 @@ function RendaExtra() {
     <Reveal className="bg-wine px-4 py-12 text-white md:py-20">
       <div className="mx-auto max-w-4xl">
         <h2 className="text-center font-display text-xl font-extrabold uppercase leading-snug tracking-wide md:text-3xl">Compra uma vez e imprime pra sempre 💰</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-white/80 md:text-base">Se você é artesã, encadernadora, tem gráfica em casa ou quer começar uma renda extra, esse kit trabalha por você. São vários produtos em um só: o devocional, três livros de colorir, as canecas, os cards e o mural. Você imprime, monta e vende pra todas as mães da sua igreja e da sua cidade.</p>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-white/80 md:text-base">Se você é artesã, encadernadora, tem gráfica em casa ou quer começar uma renda extra, esse kit trabalha por você. Você imprime, monta e vende pra todas as mães da sua igreja e da sua cidade. A capa com o nome da criança faz a mãe pagar mais caro e ainda agradecer.</p>
         <div className="mx-auto mt-8 max-w-md rounded-3xl bg-white/5 p-6 ring-1 ring-white/15">
           <dl className="space-y-3 text-sm">
             <div className="flex justify-between gap-4"><dt className="text-white/70">Investimento (o kit completo)</dt><dd className="font-bold">R$ {PRICES.premiumPor}</dd></div>
@@ -226,18 +268,25 @@ function RendaExtra() {
   )
 }
 
-/* ---------- QUEM É A LINA ---------- */
-function QuemELina() {
+/* ---------- ANCORAGEM DE VALOR ---------- */
+function Ancoragem() {
   return (
-    <Reveal className="bg-cream px-4 py-12 md:py-20">
-      <div className="mx-auto max-w-3xl">
-        <div className="flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-          <img src={IMG.lina} loading="lazy" decoding="async" className="h-36 w-36 shrink-0 rounded-full border-4 border-blush object-cover shadow-lg md:h-40 md:w-40" alt="Lina" />
-          <div>
-            <h2 className="font-display text-2xl font-extrabold text-wine md:text-3xl">Oi, eu sou a Lina 💛</h2>
-            <p className="mt-3 text-sm leading-relaxed text-bark/80 md:text-base">Sou mãe, apaixonada por Jesus e por papelaria. Crio cada arquivo no meu ateliê, a casinha rosa, pensando em facilitar a vida de quem quer ensinar os filhos com carinho e de quem quer fazer uma renda com algo cheio de propósito. Esse devocional eu fiz com o coração.</p>
+    <Reveal className="bg-cream px-4 py-12 md:py-16">
+      <div className="mx-auto max-w-2xl text-center">
+        <h2 className="font-display text-xl font-extrabold uppercase leading-snug tracking-wide text-wine md:text-2xl">Se você fosse comprar tudo isso separado</h2>
+        <div className="mx-auto mt-6 max-w-md rounded-3xl border border-bark/10 bg-white p-6 text-left shadow-soft">
+          <dl className="space-y-2 text-sm text-bark/80">
+            {ANCORAGEM.map((a) => (
+              <div key={a.item} className="flex justify-between gap-4"><dt>{a.item}</dt><dd className="text-bark/40 line-through">R$ {a.valor}</dd></div>
+            ))}
+            <div className="mt-2 flex justify-between gap-4 border-t border-bark/10 pt-3 font-bold text-bark"><dt>Tudo isso valeria</dt><dd className="text-bark/50 line-through">R$ {ANCORAGEM_TOTAL}</dd></div>
+          </dl>
+          <div className="mt-4 rounded-2xl bg-gold-soft/40 py-4 text-center">
+            <p className="text-sm font-semibold text-bark">Hoje, tudo junto, por</p>
+            <p className="font-display text-4xl font-black text-gold-deep">R$ {PRICES.premiumPor}</p>
           </div>
         </div>
+        <div className="mt-7"><GoldBtn>Quero tudo por R${PRICES.premiumPor}</GoldBtn></div>
       </div>
     </Reveal>
   )
@@ -254,9 +303,7 @@ function Pricing({ onOpenDownsell }) {
           <span className="text-xs font-extrabold uppercase tracking-wide">Oferta encerra em</span>
           <span className="rounded-full bg-wine/15 px-2 py-0.5 font-black tabular-nums">{h}:{m}:{s}</span>
         </div>
-
         <div className="flex flex-col items-stretch justify-center gap-8 lg:flex-row lg:gap-10">
-          {/* BÁSICO enfraquecido */}
           <div className="flex w-full flex-col rounded-2xl border border-bark/10 bg-bark/[0.03] p-6 opacity-90 shadow-sm lg:mt-10 lg:w-[42%] md:rounded-3xl md:p-8">
             <h3 className="font-display text-lg font-bold uppercase text-bark/60">Plano Básico</h3>
             <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-bark/40">só o essencial</p>
@@ -274,8 +321,6 @@ function Pricing({ onOpenDownsell }) {
             </div>
             <button onClick={onOpenDownsell} className="mt-5 block w-full rounded-full border border-bark/15 px-6 py-3 text-sm font-medium text-bark/50 transition-colors hover:bg-bark/5">Quero mesmo assim só o básico</button>
           </div>
-
-          {/* VIP completo */}
           <div className="relative flex w-full flex-col rounded-2xl border-4 border-gold bg-white p-6 shadow-2xl transition-transform duration-300 hover:-translate-y-2 lg:w-[58%] lg:-translate-y-2 md:rounded-[2.5rem] md:border-8 md:p-9">
             <div className="absolute left-1/2 top-0 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 whitespace-nowrap rounded-full border-2 border-white bg-gradient-to-r from-gold-deep via-gold to-gold-deep px-5 py-2 text-xs font-black uppercase tracking-widest text-wine shadow-xl md:border-4 md:px-8 md:text-lg">⭐ Mais escolhido</div>
             <h3 className="mt-2 font-display text-2xl font-extrabold uppercase text-bark">Kit Completo VIP</h3>
@@ -307,17 +352,37 @@ function Pricing({ onOpenDownsell }) {
   )
 }
 
+/* ---------- COMO VOCÊ RECEBE ---------- */
+function ComoRecebe() {
+  return (
+    <Reveal className="bg-white px-4 py-12 md:py-16">
+      <div className="mx-auto max-w-4xl text-center">
+        <h2 className="font-display text-xl font-extrabold uppercase leading-snug tracking-wide text-wine md:text-2xl">Como você recebe (é simples assim)</h2>
+        <div className="mt-8 grid gap-5 sm:grid-cols-3">
+          {PASSOS.map((p) => (
+            <div key={p.n} className="rounded-2xl border border-sky/60 bg-cream p-6 shadow-soft">
+              <div className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full text-lg font-black ${p.cor}`}>{p.n}</div>
+              <h3 className="mt-3 font-display text-base font-extrabold uppercase text-wine">{p.title}</h3>
+              <p className="mt-1 text-sm text-bark/70">{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
 /* ---------- GARANTIA ---------- */
 function Garantia() {
-  const selos = ['Pix ou Cartão', 'Acesso imediato', 'Produto digital', 'Compra protegida']
+  const selos = ['Pix ou Cartão', 'Acesso imediato', 'E-mail e WhatsApp', 'Compra protegida']
   return (
-    <Reveal className="bg-white px-4 py-12 md:py-20">
+    <Reveal className="bg-gradient-to-b from-cream to-sky-soft px-4 py-12 md:py-20">
       <div className="mx-auto max-w-2xl text-center">
         <div className="softbounce mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border-4 border-meadow/40 bg-meadow-soft text-4xl shadow-inner md:h-28 md:w-28 md:text-5xl">🛡️</div>
         <h2 className="font-display text-2xl font-extrabold uppercase text-wine md:text-3xl">Garantia de 7 dias</h2>
         <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-bark/80 md:text-base">Baixe o material, imprima e faça o teste com seu filho. Se não for tudo o que você esperava, é só pedir o reembolso em até 7 dias e devolvemos cada centavo. O risco é todo nosso.</p>
         <div className="mt-5 flex flex-wrap justify-center gap-2">
-          {selos.map((x) => <span key={x} className="rounded-full bg-cream px-3 py-1 text-xs font-semibold text-bark/70 shadow-sm">{x}</span>)}
+          {selos.map((x) => <span key={x} className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-bark/70 shadow-sm">{x}</span>)}
         </div>
       </div>
     </Reveal>
@@ -359,7 +424,7 @@ function CtaFinal({ onOpenDownsell }) {
       <div className="mx-auto max-w-3xl text-center">
         <p className="mx-auto max-w-2xl font-display text-xl font-semibold italic leading-relaxed text-gold-soft md:text-2xl">"Instrui o menino no caminho em que deve andar, e até quando envelhecer não se desviará dele."</p>
         <p className="mt-2 text-sm text-white/60">Provérbios 22:6 💛</p>
-        <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/85 md:text-base">Comece esse caminho com seu filho hoje, por menos do que custa um lanche. Baixa agora, imprime ainda hoje e amanhã já faz o primeiro dia com ele.</p>
+        <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/85 md:text-base">Comece essas 31 dinâmicas com seu filho hoje, por menos do que custa um lanche. Baixa agora, imprime ainda hoje e amanhã já faz a primeira com ele.</p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <button onClick={onOpenDownsell} className="rounded-full border-2 border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white md:text-base">Quero só o devocional por R$ {PRICES.basicoPor}</button>
           <button onClick={() => goToCheckout(CHECKOUT.premium, 'Kit Completo VIP - CTA final')} className="pulsing-btn flex items-center justify-center gap-2 rounded-full border-2 border-gold-soft bg-gradient-to-r from-gold to-gold-deep px-7 py-4 text-base font-black uppercase tracking-wide text-wine shadow-xl">Quero o kit completo por R$ {PRICES.premiumPor}</button>
@@ -376,7 +441,6 @@ export default function App() {
   const closeDownsell = useCallback(() => setDownsellOpen(false), [])
   const exitShown = useRef(false)
 
-  // Exit-intent (desktop): abre o downsell ao tentar sair da aba
   useEffect(() => {
     const onLeave = (e) => {
       if (!exitShown.current && e.clientY <= 0 && !e.relatedTarget) {
@@ -393,14 +457,17 @@ export default function App() {
       <UrgencyBar />
       <main>
         <Hero />
-        <Depoimentos onOpenDownsell={openDownsell} />
+        <Depoimentos />
         <Demonstracao />
+        <Personalizacao />
         <Features />
+        <QuemELina />
         <KitPrincipal />
         <Bonus />
         <RendaExtra />
-        <QuemELina />
+        <Ancoragem />
         <Pricing onOpenDownsell={openDownsell} />
+        <ComoRecebe />
         <Garantia />
         <Faq />
         <CtaFinal onOpenDownsell={openDownsell} />

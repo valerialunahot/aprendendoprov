@@ -14,12 +14,11 @@ export const PRICES = {
   downsellDe: '24,90', downsellPor: '19,90',
 }
 
-// Vimeo do depoimento (micro VSL)
 export const VSL_VIMEO_ID = '1202696010'
 
-// Imagens (formato direto i.imgur.com/<id>.<ext>)
 export const IMG = {
-  hero: 'https://i.imgur.com/s0dxWM8.png',
+  hero: 'https://i.imgur.com/VlQCrOl.png',        // foto mãe + filho (Arthur)
+  personalizacao: 'https://i.imgur.com/VlQCrOl.png',
   kit: 'https://i.imgur.com/V2gfLE1.png',
   lina: 'https://i.imgur.com/VvnRQXS.jpg',
   galeria: [
@@ -27,7 +26,6 @@ export const IMG = {
     { src: 'https://i.imgur.com/l4yZFzX.png', legenda: 'O versículo de Provérbios pra fixar' },
     { src: 'https://i.imgur.com/LkfxnFI.png', legenda: 'O espaço pra criança refletir e responder' },
     { src: 'https://i.imgur.com/j9EDmfw.png', legenda: 'A página pra desenhar o que aprendeu' },
-    { src: 'https://i.imgur.com/qwoaBEx.png', legenda: 'A capa que você personaliza com o nome dele' },
     { src: 'https://i.imgur.com/gNPtcht.png', legenda: 'O bolsinho porta-devocional' },
   ],
   feedbacks: [
@@ -39,25 +37,23 @@ export const IMG = {
   ],
 }
 
+// Headline do Hero (script = Caveat dourada · resto = Playfair sem caixa alta)
 export const HEADLINE = {
-  pre: 'Plante a ',
-  hl1: 'Palavra de Deus',
-  mid: ' no coração do seu filho com ',
-  hl2: '31 dias',
-  pos: ' de devocional que ele mesmo vai pedir pra abrir.',
+  script: '+31 dinâmicas cristãs',
+  pre: 'pra tirar seu filho da tela e ensinar ele a ',
+  italic: 'amar a Deus',
+  pos: '.',
 }
 
-export const HERO_BENEFITS = [] // (benefícios agora no subtítulo; mantido p/ edição futura)
-
 export const FEATURES = [
-  { emoji: '🕊️', border: 'border-sapphire', ring: 'border-sky bg-sky-soft', title: 'A criança longe da tela sem briga', text: 'Uma atividade gostosa pra ela trocar parte do tempo de celular por algo que ensina valor e diverte de verdade.' },
+  { emoji: '🕊️', border: 'border-sapphire', ring: 'border-sky bg-sky-soft', title: 'A criança longe da tela sem briga', text: 'Uma dinâmica gostosa pra ela trocar parte do tempo de celular por algo que ensina valor e diverte de verdade.' },
   { emoji: '👨‍👩‍👧', border: 'border-meadow-deep', ring: 'border-meadow bg-meadow-soft', title: 'Um momento de vocês dois', text: 'Um ritual pra fazer junto todo dia, que aproxima você do seu filho e planta a Palavra no coraçãozinho dele.' },
   { emoji: '🖨️', border: 'border-gold-deep', ring: 'border-gold-soft bg-gold-soft/40', title: 'Imprime quantas vezes quiser', text: 'É arquivo digital. Baixa uma vez e imprime sempre que precisar, pra um filho, pros sobrinhos, pra turma da escolinha.' },
   { emoji: '💰', border: 'border-blush', ring: 'border-blush bg-blush/20', title: 'E ainda pode virar renda', text: 'Se você trabalha com papelaria ou sonha em começar, esse material você imprime, monta e vende pra outras mães.' },
 ]
 
 export const KIT_ITEMS = [
-  'Devocional "Aprendendo com Provérbios" completo (31 lições)',
+  'Devocional "Aprendendo com Provérbios" completo (31 dinâmicas)',
   'Capa personalizável com o nome da criança',
   'Certificado de conclusão pra celebrar cada etapa',
   'Caneca "Caminhando com Deus todos os dias"',
@@ -73,8 +69,25 @@ export const BONUS = [
   { img: '', tag: 'Bônus 4', title: 'Presente surpresa 🎁', valor: 'secreto', text: 'Tem mais um presente guardado dentro do kit. A gente deixa como surpresa pra você descobrir na hora de baixar. Vale muito a pena 🥹' },
 ]
 
+// Ancoragem de valor (soma riscada antes dos planos)
+export const ANCORAGEM = [
+  { item: 'Devocional Aprendendo com Provérbios', valor: '47,00' },
+  { item: 'Caderno de Atividades Bíblicas', valor: '29,90' },
+  { item: 'Pack Colorindo com Jesus', valor: '39,90' },
+  { item: 'Versículos para Colorir', valor: '29,90' },
+  { item: 'Caneca, bolsinho e certificado', valor: '20,00' },
+]
+export const ANCORAGEM_TOTAL = '166,70'
+
+// Como você recebe (3 passos)
+export const PASSOS = [
+  { n: '1', cor: 'bg-sapphire text-white', title: 'Preencha seus dados', text: 'Nome, e-mail e WhatsApp pra gente enviar o material certinho.' },
+  { n: '2', cor: 'bg-meadow-deep text-white', title: 'Pague no Pix', text: 'Pagamento rápido e seguro, aprovado na hora.' },
+  { n: '3', cor: 'bg-gold text-wine', title: 'Receba na hora', text: 'O material chega no seu e-mail e WhatsApp logo após a compra.' },
+]
+
 export const BASICO_ITEMS = [
-  'Devocional "Aprendendo com Provérbios" (31 lições)',
+  'Devocional "Aprendendo com Provérbios" (31 dinâmicas)',
   'Capa personalizável com o nome da criança',
 ]
 export const BASICO_EXCLUSOES = [
@@ -86,7 +99,7 @@ export const BASICO_EXCLUSOES = [
 ]
 
 export const PREMIUM_ITEMS = [
-  'Devocional completo "Aprendendo com Provérbios" (31 lições)',
+  'Devocional completo "Aprendendo com Provérbios" (31 dinâmicas)',
   'Capa personalizável com o nome da criança',
   'Certificado de conclusão',
   'Caneca "Caminhando com Deus todos os dias"',
@@ -99,10 +112,10 @@ export const PREMIUM_ITEMS = [
 ]
 
 export const FAQ = [
-  { q: 'Vou receber um produto físico em casa?', a: 'Não. É um arquivo digital. Você recebe o acesso por e-mail logo após a compra, baixa no celular ou no computador e imprime quantas vezes quiser.' },
+  { q: 'Vou receber um produto físico em casa?', a: 'Não. É um arquivo digital. Você recebe o acesso por e-mail e WhatsApp logo após a compra, baixa no celular ou no computador e imprime quantas vezes quiser.' },
   { q: 'Preciso saber mexer com design ou ter algum programa?', a: 'Não. Vem tudo pronto. Você só baixa, manda imprimir e monta. As dicas de impressão acompanham o kit.' },
   { q: 'Consigo imprimir em casa mesmo?', a: 'Sim. Dá pra imprimir na sua impressora de casa ou levar numa gráfica ou papelaria.' },
   { q: 'Posso imprimir e vender os produtos montados?', a: 'Sim. Você compra uma vez e pode imprimir e vender quantas vezes quiser.' },
-  { q: 'Quanto tempo demora pra eu receber o acesso?', a: 'É na hora. Assim que o pagamento é confirmado, o acesso chega no seu e-mail.' },
+  { q: 'Quanto tempo demora pra eu receber o acesso?', a: 'É na hora. Assim que o pagamento é confirmado, o material chega no seu e-mail e no seu WhatsApp.' },
   { q: 'Serve pra qual idade?', a: 'Foi pensado pra crianças de 4 a 10 anos, com linguagem simples e historinhas que prendem a atenção.' },
 ]
